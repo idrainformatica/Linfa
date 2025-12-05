@@ -1,0 +1,48 @@
+📁 APPLICATION LOGO FILES (USED IN DOCKER BUILD)
+│
+├── 📁 src-ui/ (Frontend - Angular Application)
+│   ├── src/favicon.ico ⚠️ Main favicon
+│   ├── apple-touch-icon.png ⚠️ iOS/Apple devices icon
+│   └── src/assets/
+│       ├── logo.svg ⚠️ Primary logo (with text)
+│       ├── logo-notext.svg ⚠️ Icon only
+│       ├── logo-dark.svg ⚠️ Dark theme logo
+│       ├── logo-dark-notext.svg ⚠️ Dark theme icon
+│       └── logo-white-notext.svg ⚠️ White version icon
+│
+├── 📁 src/paperless/static/paperless/img/ (Backend Static)
+│   ├── favicon.ico ⚠️ Backend favicon
+│   ├── logo-dark.png ⚠️ Dark theme PNG
+│   └── logo-light.png ⚠️ Light theme PNG
+│
+└── 📁 src/documents/templates/paperless-ngx/snippets/
+    └── svg_logo.html (SVG logo template)
+
+📁 DOCUMENTATION FILES (NOT in Docker build)
+│
+└── 📁 docs/assets/
+    ├── favicon.png (MkDocs documentation favicon)
+    ├── logo.svg
+    ├── logo_full_black.svg
+    └── logo_full_white.svg
+
+📁 RESOURCES (EXCLUDED from Docker - see .dockerignore)
+│
+└── 📁 resources/logo/
+    ├── logo.txt
+    ├── web/
+    │   ├── svg/
+    │   │   ├── Black logo - no background.svg
+    │   │   ├── Color logo - no background.svg
+    │   │   ├── Color logo with background.svg
+    │   │   ├── square.svg
+    │   │   └── White logo - no background.svg
+    │   └── png/
+    │       ├── Black logo - no background.png
+    │       ├── Color logo - no background.png
+    │       ├── Color logo with background.png
+    │       └── White logo - no background.png
+    └── print/
+        ├── pdf/ (4 logo variants)
+        └── eps/ (4 logo variants)
+

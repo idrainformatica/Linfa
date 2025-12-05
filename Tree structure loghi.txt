@@ -8,7 +8,7 @@
 │       ├── logo-notext.svg ⚠️ Icon only
 │       ├── logo-dark.svg ⚠️ Dark theme logo
 │       ├── logo-dark-notext.svg ⚠️ Dark theme icon
-│       └── logo-white-notext.svg ⚠️ White version icon
+│       └── logo-white-notext.svg ⚠️ White version icon ok
 │
 ├── 📁 src/paperless/static/paperless/img/ (Backend Static)
 │   ├── favicon.ico ⚠️ Backend favicon

@@ -67,7 +67,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Install python
         uses: actions/setup-python@v6
         with:
@@ -81,14 +81,14 @@ jobs:
       - pre-commit
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Set up Python
         id: setup-python
         uses: actions/setup-python@v6
         with:
           python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           version: ${{ env.DEFAULT_UV_VERSION }}
           enable-cache: true
@@ -115,7 +115,7 @@ jobs:
             --frozen \
             mkdocs gh-deploy --force --no-history
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: documentation
           path: site/
@@ -131,7 +131,7 @@ jobs:
       fail-fast: false
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Start containers
         run: |
           docker compose --file ${{ github.workspace }}/docker/compose/docker-compose.ci-test.yml pull --quiet
@@ -142,7 +142,7 @@ jobs:
         with:
           python-version: "${{ matrix.python-version }}"
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           version: ${{ env.DEFAULT_UV_VERSION }}
           enable-cache: true
@@ -201,20 +201,20 @@ jobs:
     needs:
       - pre-commit
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 10
       - name: Use Node.js 20
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: 20.x
           cache: 'pnpm'
           cache-dependency-path: 'src-ui/pnpm-lock.yaml'
       - name: Cache frontend dependencies
         id: cache-frontend-deps
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ~/.pnpm-store
@@ -234,20 +234,20 @@ jobs:
         shard-index: [1, 2, 3, 4]
         shard-count: [4]
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 10
       - name: Use Node.js 20
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: 20.x
           cache: 'pnpm'
           cache-dependency-path: 'src-ui/pnpm-lock.yaml'
       - name: Cache frontend dependencies
         id: cache-frontend-deps
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ~/.pnpm-store
@@ -282,20 +282,20 @@ jobs:
         shard-index: [1, 2]
         shard-count: [2]
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 10
       - name: Use Node.js 20
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: 20.x
           cache: 'pnpm'
           cache-dependency-path: 'src-ui/pnpm-lock.yaml'
       - name: Cache frontend dependencies
         id: cache-frontend-deps
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ~/.pnpm-store
@@ -304,7 +304,7 @@ jobs:
       - name: Re-link Angular cli
         run: cd src-ui && pnpm link @angular/cli
       - name: Cache Playwright browsers
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-${{ hashFiles('src-ui/pnpm-lock.yaml') }}
@@ -325,20 +325,20 @@ jobs:
       - tests-frontend
       - tests-frontend-e2e
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 10
       - name: Use Node.js 20
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: 20.x
           cache: 'pnpm'
           cache-dependency-path: 'src-ui/pnpm-lock.yaml'
       - name: Cache frontend dependencies
         id: cache-frontend-deps
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ~/.pnpm-store
@@ -400,7 +400,7 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       # If https://github.com/docker/buildx/issues/1044 is resolved,
       # the append input with a native arm64 arch could be used to
       # significantly speed up building
@@ -457,7 +457,7 @@ jobs:
           docker create --name frontend-extract ${{ fromJSON(steps.docker-meta.outputs.json).tags[0] }}
           docker cp frontend-extract:/usr/src/paperless/src/documents/static/frontend src/documents/static/frontend/
       - name: Upload frontend artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: frontend-compiled
           path: src/documents/static/frontend/
@@ -470,14 +470,14 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Set up Python
         id: setup-python
         uses: actions/setup-python@v6
         with:
           python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           version: ${{ env.DEFAULT_UV_VERSION }}
           enable-cache: true
@@ -490,12 +490,12 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -qq --no-install-recommends gettext liblept5
       - name: Download frontend artifact
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           name: frontend-compiled
           path: src/documents/static/frontend/
       - name: Download documentation artifact
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           name: documentation
           path: docs/_build/html/
@@ -558,7 +558,7 @@ jobs:
           sudo chown -R 1000:1000 paperless-ngx/
           tar -cJf paperless-ngx.tar.xz paperless-ngx/
       - name: Upload release artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: release
           path: dist/paperless-ngx.tar.xz
@@ -575,7 +575,7 @@ jobs:
     if: github.ref_type == 'tag' && (startsWith(github.ref_name, 'v') || contains(github.ref_name, '-beta.rc'))
     steps:
       - name: Download release artifact
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           name: release
           path: ./
@@ -616,7 +616,7 @@ jobs:
     if: needs.publish-release.outputs.prerelease == 'false'
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: main
       - name: Set up Python
@@ -625,7 +625,7 @@ jobs:
         with:
           python-version: ${{ env.DEFAULT_PYTHON_VERSION }}
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           version: ${{ env.DEFAULT_UV_VERSION }}
           enable-cache: true
